@@ -1,81 +1,32 @@
 import React from 'react';
 
 function Stories() {
+  const usersName = [
+    '9gag',
+    'meowed',
+    'barked',
+    'nathanwpylestrangeplanet',
+    'wawawicomics',
+    'respondeai',
+    'filomoderna',
+    'memeriagourmet',
+  ];
+
+  const story = usersName.map((name) => (
+    <div class="story">
+      <div class="imagem">
+        <img src={`assets/${name}.svg`} alt='logo' />
+      </div>
+      <div class="usuario">
+        {name}
+      </div>
+    </div>
+  ));
+
   return (
     <div>
       <div class="stories">
-        <div class="story">
-          <div class="imagem">
-            <img src="assets/9gag.svg" alt='logo' />
-          </div>
-          <div class="usuario">
-            9gag
-          </div>
-        </div>
-
-        <div class="story">
-          <div class="imagem">
-            <img src="assets/meowed.svg" alt='logo' />
-          </div>
-          <div class="usuario">
-            meowed
-          </div>
-        </div>
-
-        <div class="story">
-          <div class="imagem">
-            <img src="assets/barked.svg" alt='logo' />
-          </div>
-          <div class="usuario">
-            barked
-          </div>
-        </div>
-
-        <div class="story">
-          <div class="imagem">
-            <img src="assets/nathanwpylestrangeplanet.svg" alt='logo' />
-          </div>
-          <div class="usuario">
-            nathanwpylestrangeplanet
-          </div>
-        </div>
-
-        <div class="story">
-          <div class="imagem">
-            <img src="assets/wawawicomics.svg" alt='logo' />
-          </div>
-          <div class="usuario">
-            wawawicomics
-          </div>
-        </div>
-
-        <div class="story">
-          <div class="imagem">
-            <img src="assets/respondeai.svg" alt='logo' />
-          </div>
-          <div class="usuario">
-            respondeai
-          </div>
-        </div>
-
-        <div class="story">
-          <div class="imagem">
-            <img src="assets/filomoderna.svg" alt='logo' />
-          </div>
-          <div class="usuario">
-            filomoderna
-          </div>
-        </div>
-
-        <div class="story">
-          <div class="imagem">
-            <img src="assets/memeriagourmet.svg" alt='logo' />
-          </div>
-          <div class="usuario">
-            memeriagourmet
-          </div>
-        </div>
-
+        {story}
         <div class="setinha">
           <ion-icon name="chevron-forward-circle"></ion-icon>
         </div>
