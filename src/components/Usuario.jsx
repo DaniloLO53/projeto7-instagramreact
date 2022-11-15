@@ -17,13 +17,13 @@ function Usuario() {
 
   return (
     <div>
-      <div className="usuario">
-        <img src={`assets/${userImage}.svg`} alt='profile-icon' onClick={() => changeUserImage()} />
+      <div className="usuario" data-test="user">
+        <img src={`assets/${userImage}.svg`} alt='profile-icon' onClick={() => changeUserImage()} data-test="profile-image" />
         <div className="texto">
           <strong>catanacomics</strong>
-          <span>
+          <span data-test="name">
             {userName}
-            <ion-icon name="pencil" onClick={() => changeUserName()}></ion-icon>
+            <ion-icon name="pencil" data-test="edit-name" onClick={() => changeUserName()}></ion-icon>
           </span>
         </div>
       </div>
