@@ -24,23 +24,23 @@ function Sugestoes() {
     },
   ];
 
-  const suggestions = suggestionInfo.map(({ name, status }) => (
-    <div class="sugestao">
-      <div class="usuario">
+  const suggestions = suggestionInfo.map(({ name, status }, index) => (
+    <div className="sugestao" key={index}>
+      <div className="usuario">
         <img src={`assets/${name}.svg`} alt='profile-icon' />
-        <div class="texto">
-          <div class="nome">{name}</div>
-          <div class="razao">{status}</div>
+        <div className="texto">
+          <div className="nome">{name}</div>
+          <div className="razao">{status}</div>
         </div>
       </div>
 
-      <div class="seguir">Seguir</div>
+      <div className="seguir">Seguir</div>
     </div>
   ));
   return (
     <div>
-      <div class="sugestoes">
-        <div class="titulo">
+      <div className="sugestoes">
+        <div className="titulo">
           Sugestões para você
           <div>Ver tudo</div>
         </div>

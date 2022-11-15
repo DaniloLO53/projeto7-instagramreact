@@ -16,24 +16,24 @@ function Posts() {
     },
   ];
 
-  const post = postsInfos.map(({ author, image, likesUser, likesCounter }) => (
-    <div class="post">
-      <div class="topo">
-        <div class="usuario">
+  const post = postsInfos.map(({ author, image, likesUser, likesCounter }, index) => (
+    <div className="post" key={index}>
+      <div className="topo">
+        <div className="usuario">
           <img src={`assets/${author}.svg`} alt='logo' />
           meowed
         </div>
-        <div class="acoes">
+        <div className="acoes">
           <ion-icon name="ellipsis-horizontal"></ion-icon>
         </div>
       </div>
 
-      <div class="conteudo">
+      <div className="conteudo">
         <img src={`assets/${image}.svg`} alt='logo' />
       </div>
 
-      <div class="fundo">
-        <div class="acoes">
+      <div className="fundo">
+        <div className="acoes">
           <div>
             <ion-icon name="heart-outline"></ion-icon>
             <ion-icon name="chatbubble-outline"></ion-icon>
@@ -44,9 +44,9 @@ function Posts() {
           </div>
         </div>
 
-        <div class="curtidas">
+        <div className="curtidas">
           <img src={`assets/${likesUser}.svg`} alt='logo' />
-          <div class="texto">
+          <div className="texto">
             Curtido por <strong>{likesUser}</strong> e <strong>outras {likesCounter} pessoas</strong>
           </div>
         </div>
@@ -56,7 +56,7 @@ function Posts() {
 
   return (
     <div>
-      <div class="posts">
+      <div className="posts">
         {post}
       </div>
     </div>

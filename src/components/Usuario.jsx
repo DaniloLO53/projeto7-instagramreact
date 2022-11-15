@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Usuario() {
+  const [userName, setUserName] = useState('Catana');
+  const [userImage, setUserImage] = useState('catanacomics');
+
+  const changeUserName = () => {
+    console.log(9)
+    const name = prompt('Insira um nome: ');
+    setUserName(name);
+  }
+
+  const changeUserImage = () => {
+    const image = prompt('Insira um nome para a imagem: ');
+    setUserImage(image);
+  }
+
   return (
     <div>
-      <div class="usuario">
-        <img src="assets/catanacomics.svg" alt='profile-icon' />
-        <div class="texto">
+      <div className="usuario">
+        <img src={`assets/${userImage}.svg`} alt='profile-icon' onClick={() => changeUserImage()} />
+        <div className="texto">
           <strong>catanacomics</strong>
           <span>
-            Catana
-            <ion-icon name="pencil"></ion-icon>
+            {userName}
+            <ion-icon name="pencil" onClick={() => changeUserName()}></ion-icon>
           </span>
         </div>
       </div>

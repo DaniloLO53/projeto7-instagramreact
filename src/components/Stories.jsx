@@ -12,12 +12,12 @@ function Stories() {
     'memeriagourmet',
   ];
 
-  const story = usersName.map((name) => (
-    <div class="story">
-      <div class="imagem">
+  const story = usersName.map((name, index) => (
+    <div className="story" key={index}>
+      <div className="imagem">
         <img src={`assets/${name}.svg`} alt='logo' />
       </div>
-      <div class="usuario">
+      <div className="usuario">
         {name}
       </div>
     </div>
@@ -25,9 +25,9 @@ function Stories() {
 
   return (
     <div>
-      <div class="stories">
+      <div className="stories">
         {story}
-        <div class="setinha">
+        <div className="setinha">
           <ion-icon name="chevron-forward-circle"></ion-icon>
         </div>
       </div>
