@@ -29,6 +29,10 @@ body {
   cursor: pointer;
 }
 
+.acoes div:first-child ion-icon:first-child {
+  color: red;
+}
+
 .navbar .container {
   width: 100%;
   max-width: 935px;
@@ -317,6 +321,11 @@ body {
   display: none !important;
 }
 
+ion-icon.red-heart {
+  background-color: red;
+  font-size: 120px;
+}
+
 @media (max-width: 935px) {
   .sidebar {
     display: none;
@@ -406,4 +415,3 @@ ion-icon {
 .usuario ion-icon {
   margin-left: 5px;
 }
-

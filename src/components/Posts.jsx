@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 function Posts() {
   const [saved, setSaved] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [red, setRed] = useState(false);
   const [icon, setIcon] = useState('bookmark-outline');
   const [heart, setHeart] = useState('heart-outline');
 
@@ -58,7 +59,7 @@ function Posts() {
       <div className="fundo">
         <div className="acoes">
           <div>
-            <ion-icon name={heart} onClick={() => setLiked(!liked)}></ion-icon>
+            <ion-icon name={heart} onClick={() => setLiked(!liked)} className={red}></ion-icon>
             <ion-icon name="chatbubble-outline"></ion-icon>
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>
