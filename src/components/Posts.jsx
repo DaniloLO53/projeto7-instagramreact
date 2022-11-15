@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 function Posts() {
   const [saved, setSaved] = useState(false);
   const [liked, setLiked] = useState(false);
-  const [red, setRed] = useState(false);
   const [icon, setIcon] = useState('bookmark-outline');
   const [heart, setHeart] = useState('heart-outline');
 
@@ -30,13 +29,13 @@ function Posts() {
       author: 'meowed',
       image: 'gato-telefone',
       likesUser: 'respondeai',
-      likesCounter: '101.523',
+      likesCounter: liked ? 101.524 : 101.523,
     },
     {
       author: 'barked',
       image: 'dog',
       likesUser: 'adorable_animals',
-      likesCounter: '99.159',
+      likesCounter: liked ? 99.160 : 99.159,
     },
   ];
 
@@ -59,7 +58,7 @@ function Posts() {
       <div className="fundo">
         <div className="acoes">
           <div>
-            <ion-icon name={heart} onClick={() => setLiked(!liked)} className={red}></ion-icon>
+            <ion-icon name={heart} onClick={() => setLiked(!liked)}></ion-icon>
             <ion-icon name="chatbubble-outline"></ion-icon>
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>
