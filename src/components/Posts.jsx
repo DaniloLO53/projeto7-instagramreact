@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Posts() {
+  const [saved, setSaved] = useState(false);
+  const [icon, setIcon] = useState('bookmark-outline');
+
+  useEffect(() => {
+    if (saved === true) {
+      setIcon('bookmark');
+    } else {
+      setIcon('bookmark-outline');
+    }
+
+  }, [saved])
+
   const postsInfos = [
     {
       author: 'meowed',
@@ -40,7 +52,7 @@ function Posts() {
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>
           <div>
-            <ion-icon name="bookmark-outline"></ion-icon>
+            <ion-icon name={icon} onClick={() => setSaved(!saved)}></ion-icon>
           </div>
         </div>
 
