@@ -5,6 +5,9 @@ function Posts() {
   const [liked, setLiked] = useState(false);
   const [icon, setIcon] = useState('bookmark-outline');
   const [heart, setHeart] = useState('heart-outline');
+  const [currentKey, setCurrentKey] = useState('');
+
+  console.log(currentKey);
 
   useEffect(() => {
     if (saved === true) {
@@ -35,7 +38,7 @@ function Posts() {
       author: 'barked',
       image: 'dog',
       likesUser: 'adorable_animals',
-      likesCounter: liked ? 99.160 : 99.159,
+      likesCounter: liked ? '99.160' : 99.159,
     },
   ];
 
@@ -52,19 +55,28 @@ function Posts() {
       </div>
 
       <div className="conteudo">
-        <img src={`assets/${image}.svg`} alt='logo' onDoubleClick={() => setLiked(true)} data-test="post-image" />
-        <ion-icon name="heart" className={liked ? 'heart-animation' : 'heart-hide'}></ion-icon>
+        <img src={`assets/${image}.svg`} alt='logo' onDoubleClick={() => {
+          setCurrentKey(index);
+          setLiked(true);
+        }} data-test="post-image" />
+        <ion-icon name="heart" className={liked && currentKey === index ? 'heart-animation' : 'heart-hide'}></ion-icon>
       </div>
 
       <div className="fundo">
         <div className="acoes">
           <div>
-            <ion-icon name={heart} onClick={() => setLiked(!liked)} data-test="like-post" className="heart-menu"></ion-icon>
+            <ion-icon name={heart === 'heart' && currentKey === index ? 'heart' : 'heart-outline'} onClick={() => {
+              setCurrentKey(index);
+              setLiked(!liked);
+            }} data-test="like-post" className="heart-menu"></ion-icon>
             <ion-icon name="chatbubble-outline"></ion-icon>
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>
           <div>
-            <ion-icon name={icon} onClick={() => setSaved(!saved)} data-test="save-post"></ion-icon>
+            <ion-icon name={icon === 'bookmark' && currentKey === index ? 'bookmark' : 'bookmark-outline'} onClick={() => {
+              setCurrentKey(index);
+              setSaved(!saved);
+            }} data-test="save-post"></ion-icon>
           </div>
         </div>
 
