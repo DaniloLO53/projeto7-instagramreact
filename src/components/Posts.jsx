@@ -7,23 +7,28 @@ function Posts() {
       author: 'meowed',
       image: 'gato-telefone',
       likesUser: 'respondeai',
-      likesCounter: 101.523,
+      likesCounter: 101523,
       liked: false,
-      imageClicked: false,
+      imageClicked: '',
       saved: false,
     },
     {
       author: 'barked',
       image: 'dog',
       likesUser: 'adorable_animals',
-      likesCounter: 99.159,
+      likesCounter: 99159,
       liked: false,
-      imageClicked: false,
+      imageClicked: '',
       saved: false,
     },
   ];
-  console.log(postsInitialInfos)
   const [postInfos, setPostInfos] = useState(postsInitialInfos);
+
+  const formater = new Intl.NumberFormat('pt-BR', {
+    maximumSignificantDigits: 6,
+  });
+
+  console.log(postInfos)
 
   const post = postsInitialInfos.map(({ author, image, likesUser, likesCounter }, index) => (
     <div className="post" key={index} data-test="post">
@@ -41,12 +46,11 @@ function Posts() {
         <img src={`assets/${image}.svg`} alt='logo' onDoubleClick={() => {
           setPostInfos((prevState) => {
             prevState[index].liked = true;
-            prevState[index].imageClicked = !prevState[index].imageClicked;
+            prevState[index].imageClicked = prevState[index].imageClicked === 'noClicked' ? 'clicked' : 'noClicked';
             return [...prevState];
           });
-          // setPostInfos([...postInfos, postInfos[index].imageClicked = true]);
         }} data-test="post-image" />
-        <ion-icon name="heart" className={postInfos[index].liked === true && postInfos[index].imageClicked === true ? 'heart-animation' : 'heart-hide'}></ion-icon>
+        <ion-icon name="heart" className={postInfos[index].imageClicked === 'clicked' ? 'heart-animation' : postInfos[index].imageClicked === 'noClicked' ? 'heart-animation2' : 'heart-hide'}></ion-icon>
       </div>
 
       <div className="fundo">
@@ -64,9 +68,7 @@ function Posts() {
           <div>
             <ion-icon name={postInfos[index].saved === true ? 'bookmark' : 'bookmark-outline'} onClick={() => {
               setPostInfos((prevState) => {
-                console.log(2)
                 prevState[index].saved = !prevState[index].saved;
-                console.log(prevState[index].saved)
                 return [...prevState];
               });
             }} data-test="save-post"></ion-icon>
@@ -76,7 +78,7 @@ function Posts() {
         <div className="curtidas">
           <img src={`assets/${likesUser}.svg`} alt='logo' />
           <div className="texto">
-            Curtido por <strong>{likesUser}</strong> e <strong>outras <span data-test="likes-number">{likesCounter}</span> pessoas</strong>
+            Curtido por <strong>{likesUser}</strong> e <strong>outras <span data-test="likes-number">{postInfos[index].liked === true ? formater.format(likesCounter + 1) : formater.format(likesCounter)}</span> pessoas</strong>
           </div>
         </div>
       </div>

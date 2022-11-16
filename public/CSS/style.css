@@ -321,7 +321,7 @@ body {
   display: none !important;
 }
 
-ion-icon[name=heart][classname=heart-animation] {
+ion-icon[name=heart][classname=heart-animation], ion-icon[name=heart][classname=heart-animation2] {
   color: white;
   font-size: 0;
   animation-name: heart-animation;
@@ -334,6 +334,10 @@ ion-icon[name=heart][classname=heart-animation] {
   transform: translate(-50%, -50%);
 }
 
+ion-icon[name=heart][classname=heart-animation2] {
+  animation-name: heart-animation2;
+}
+
 ion-icon[name=heart][classname=heart-hide] {
   display: none;
 }
@@ -343,6 +347,18 @@ ion-icon[name=heart][classname=heart-menu] {
 }
 
 @keyframes heart-animation {
+  0% {
+    font-size: 30px;
+  }
+  60% {
+    font-size: 150px;
+  }
+  100% {
+    font-size: 150px;
+  }
+}
+
+@keyframes heart-animation2 {
   0% {
     font-size: 30px;
   }
