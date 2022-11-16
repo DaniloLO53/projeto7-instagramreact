@@ -59,7 +59,7 @@ function Posts() {
       <div className="fundo">
         <div className="acoes">
           <div>
-            <ion-icon name={heart} onClick={() => setLiked(!liked)} data-test="like-post"></ion-icon>
+            <ion-icon name={heart} onClick={() => setLiked(!liked)} data-test="like-post" className="heart-menu"></ion-icon>
             <ion-icon name="chatbubble-outline"></ion-icon>
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>

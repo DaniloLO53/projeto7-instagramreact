@@ -29,10 +29,6 @@ body {
   cursor: pointer;
 }
 
-.acoes div:first-child ion-icon:first-child {
-  color: red;
-}
-
 .navbar .container {
   width: 100%;
   max-width: 935px;
@@ -342,9 +338,8 @@ ion-icon[name=heart][classname=heart-hide] {
   display: none;
 }
 
-ion-icon.red-heart {
-  background-color: red;
-  font-size: 120px;
+ion-icon[name=heart][classname=heart-menu] {
+  color: red;
 }
 
 @keyframes heart-animation {
