@@ -53,6 +53,7 @@ function Posts() {
 
       <div className="conteudo">
         <img src={`assets/${image}.svg`} alt='logo' onDoubleClick={() => setLiked(true)} data-test="post-image" />
+        <ion-icon name="heart" className={liked ? 'heart-animation' : 'heart-hide'}></ion-icon>
       </div>
 
       <div className="fundo">

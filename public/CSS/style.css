@@ -190,6 +190,10 @@ body {
   cursor: pointer;
 }
 
+.conteudo {
+  position: relative;
+}
+
 .post .conteudo img {
   width: 100%;
 }
@@ -321,9 +325,38 @@ body {
   display: none !important;
 }
 
+ion-icon[name=heart][classname=heart-animation] {
+  color: white;
+  font-size: 0;
+  animation-name: heart-animation;
+  animation-fill-mode: backwards;
+  animation-timing-function: linear;
+  animation-duration: 0.5s;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+ion-icon[name=heart][classname=heart-hide] {
+  display: none;
+}
+
 ion-icon.red-heart {
   background-color: red;
   font-size: 120px;
+}
+
+@keyframes heart-animation {
+  0% {
+    font-size: 30px;
+  }
+  60% {
+    font-size: 150px;
+  }
+  100% {
+    font-size: 150px;
+  }
 }
 
 @media (max-width: 935px) {
