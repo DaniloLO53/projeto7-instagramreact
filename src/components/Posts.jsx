@@ -1,49 +1,31 @@
 import React, { useEffect, useState } from 'react';
 
 function Posts() {
-  const [saved, setSaved] = useState(false);
-  const [liked, setLiked] = useState(false);
-  const [icon, setIcon] = useState('bookmark-outline');
-  const [heart, setHeart] = useState('heart-outline');
-  const [imageClicked, setImageClicked] = useState(false);
-  const [currentKey, setCurrentKey] = useState('');
-
-  console.log(currentKey);
-
-  useEffect(() => {
-    if (saved === true) {
-      setIcon('bookmark');
-    } else {
-      setIcon('bookmark-outline');
-    }
-
-  }, [saved]);
-
-  useEffect(() => {
-    if (liked === true) {
-      setHeart('heart');
-    } else {
-      setHeart('heart-outline');
-    }
-
-  }, [liked]);
-
-  const postsInfos = [
+  console.log('rendered')
+  const postsInitialInfos = [
     {
       author: 'meowed',
       image: 'gato-telefone',
       likesUser: 'respondeai',
-      likesCounter: liked ? 101.524 : 101.523,
+      likesCounter: 101.523,
+      liked: false,
+      imageClicked: false,
+      saved: false,
     },
     {
       author: 'barked',
       image: 'dog',
       likesUser: 'adorable_animals',
-      likesCounter: liked ? '99.160' : 99.159,
+      likesCounter: 99.159,
+      liked: false,
+      imageClicked: false,
+      saved: false,
     },
   ];
+  console.log(postsInitialInfos)
+  const [postInfos, setPostInfos] = useState(postsInitialInfos);
 
-  const post = postsInfos.map(({ author, image, likesUser, likesCounter }, index) => (
+  const post = postsInitialInfos.map(({ author, image, likesUser, likesCounter }, index) => (
     <div className="post" key={index} data-test="post">
       <div className="topo">
         <div className="usuario">
@@ -57,27 +39,36 @@ function Posts() {
 
       <div className="conteudo">
         <img src={`assets/${image}.svg`} alt='logo' onDoubleClick={() => {
-          setImageClicked(!imageClicked);
-          setCurrentKey(index);
-          setLiked(true);
+          setPostInfos((prevState) => {
+            prevState[index].liked = true;
+            prevState[index].imageClicked = !prevState[index].imageClicked;
+            return [...prevState];
+          });
+          // setPostInfos([...postInfos, postInfos[index].imageClicked = true]);
         }} data-test="post-image" />
-        <ion-icon name="heart" className={liked && currentKey === index && imageClicked ? 'heart-animation' : 'heart-hide'}></ion-icon>
+        <ion-icon name="heart" className={postInfos[index].liked === true && postInfos[index].imageClicked === true ? 'heart-animation' : 'heart-hide'}></ion-icon>
       </div>
 
       <div className="fundo">
         <div className="acoes">
           <div>
-            <ion-icon name={heart === 'heart' && currentKey === index ? 'heart' : 'heart-outline'} onClick={() => {
-              setCurrentKey(index);
-              setLiked(!liked);
+            <ion-icon name={postInfos[index].liked === true ? 'heart' : 'heart-outline'} onClick={() => {
+              setPostInfos((prevState) => {
+                prevState[index].liked = !prevState[index].liked;
+                return [...prevState];
+              });
             }} data-test="like-post" className="heart-menu"></ion-icon>
             <ion-icon name="chatbubble-outline"></ion-icon>
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>
           <div>
-            <ion-icon name={icon === 'bookmark' && currentKey === index ? 'bookmark' : 'bookmark-outline'} onClick={() => {
-              setCurrentKey(index);
-              setSaved(!saved);
+            <ion-icon name={postInfos[index].saved === true ? 'bookmark' : 'bookmark-outline'} onClick={() => {
+              setPostInfos((prevState) => {
+                console.log(2)
+                prevState[index].saved = !prevState[index].saved;
+                console.log(prevState[index].saved)
+                return [...prevState];
+              });
             }} data-test="save-post"></ion-icon>
           </div>
         </div>
