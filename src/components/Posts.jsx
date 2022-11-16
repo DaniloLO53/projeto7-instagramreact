@@ -5,6 +5,7 @@ function Posts() {
   const [liked, setLiked] = useState(false);
   const [icon, setIcon] = useState('bookmark-outline');
   const [heart, setHeart] = useState('heart-outline');
+  const [imageClicked, setImageClicked] = useState(false);
   const [currentKey, setCurrentKey] = useState('');
 
   console.log(currentKey);
@@ -56,10 +57,11 @@ function Posts() {
 
       <div className="conteudo">
         <img src={`assets/${image}.svg`} alt='logo' onDoubleClick={() => {
+          setImageClicked(!imageClicked);
           setCurrentKey(index);
           setLiked(true);
         }} data-test="post-image" />
-        <ion-icon name="heart" className={liked && currentKey === index ? 'heart-animation' : 'heart-hide'}></ion-icon>
+        <ion-icon name="heart" className={liked && currentKey === index && imageClicked ? 'heart-animation' : 'heart-hide'}></ion-icon>
       </div>
 
       <div className="fundo">
