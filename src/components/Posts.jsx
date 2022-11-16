@@ -52,7 +52,7 @@ function Posts() {
       </div>
 
       <div className="conteudo">
-        <img src={`assets/${image}.svg`} alt='logo' onClick={() => setLiked(true)} data-test="post-image" />
+        <img src={`assets/${image}.svg`} alt='logo' onDoubleClick={() => setLiked(true)} data-test="post-image" />
       </div>
 
       <div className="fundo">
