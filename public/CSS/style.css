@@ -455,7 +455,3 @@ ion-icon[name=heart][classname=heart-menu] {
 ion-icon {
   visibility: visible;
 }
-
-.usuario ion-icon {
-  margin-left: 5px;
-}
