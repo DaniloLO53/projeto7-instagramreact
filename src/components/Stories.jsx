@@ -1,4 +1,5 @@
 import React from 'react';
+import Story from './Story';
 
 function Stories() {
   const usersName = [
@@ -12,16 +13,7 @@ function Stories() {
     'memeriagourmet',
   ];
 
-  const story = usersName.map((name, index) => (
-    <div className="story" key={index}>
-      <div className="imagem">
-        <img src={`assets/${name}.svg`} alt='logo' />
-      </div>
-      <div className="usuario">
-        {name}
-      </div>
-    </div>
-  ));
+  const story = usersName.map((name, index) => <Story name={name} key={index} />);
 
   return (
     <div>

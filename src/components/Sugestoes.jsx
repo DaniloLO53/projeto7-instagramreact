@@ -1,4 +1,5 @@
 import React from 'react';
+import Sugestao from './Sugestao';
 
 function Sugestoes() {
   const suggestionInfo = [
@@ -25,18 +26,14 @@ function Sugestoes() {
   ];
 
   const suggestions = suggestionInfo.map(({ name, status }, index) => (
-    <div className="sugestao" key={index}>
-      <div className="usuario">
-        <img src={`assets/${name}.svg`} alt='profile-icon' />
-        <div className="texto">
-          <div className="nome">{name}</div>
-          <div className="razao">{status}</div>
-        </div>
-      </div>
-
-      <div className="seguir">Seguir</div>
-    </div>
+    <Sugestao
+      name={name}
+      status={status}
+      index={index}
+      key={index}
+    />
   ));
+
   return (
     <div>
       <div className="sugestoes">

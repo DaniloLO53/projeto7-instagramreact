@@ -17,9 +17,9 @@ function Usuario() {
 
   return (
     <div>
-      <div className="usuario" data-test="user">
+      <div className="usuario-name" data-test="user">
         <img src={`assets/${userImage}.svg`} alt='profile-icon' onClick={() => changeUserImage()} data-test="profile-image" />
-        <div className="texto">
+        <div className="texto-nome">
           <strong>catanacomics</strong>
           <span data-test="name">
             {userName}

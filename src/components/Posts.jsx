@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Post from './Post';
 
 function Posts() {
-  console.log('rendered')
   const postsInitialInfos = [
     {
       author: 'meowed',
@@ -21,6 +21,15 @@ function Posts() {
       imageClicked: '',
       saved: false,
     },
+    {
+      author: 'chibirdart',
+      image: 'dog',
+      likesUser: 'smallcutecats',
+      likesCounter: 85123,
+      liked: false,
+      imageClicked: '',
+      saved: false,
+    },
   ];
   const [postInfos, setPostInfos] = useState(postsInitialInfos);
 
@@ -28,62 +37,44 @@ function Posts() {
     maximumSignificantDigits: 6,
   });
 
-  console.log(postInfos)
+  const post = postsInitialInfos.map(({
+    author,
+    image,
+    likesUser,
+    likesCounter
+  }, index) => {
+    let imageHeartHandle;
+    let imageIsClicked = postInfos[index].imageClicked;
+    const postLiked = !!postInfos[index].liked;
+    const postSaved = !!postInfos[index].saved;
 
-  const post = postsInitialInfos.map(({ author, image, likesUser, likesCounter }, index) => (
-    <div className="post" key={index} data-test="post">
-      <div className="topo">
-        <div className="usuario">
-          <img src={`assets/${author}.svg`} alt='logo' />
-          meowed
-        </div>
-        <div className="acoes">
-          <ion-icon name="ellipsis-horizontal"></ion-icon>
-        </div>
-      </div>
+    if (imageIsClicked === 'clicked') {
+      imageHeartHandle = 'heart-animation';
+    } else if (imageIsClicked === 'noClicked') {
+      imageHeartHandle = 'heart-animation2';
+    } else {
+      imageHeartHandle = 'heart-hide';
+    };
 
-      <div className="conteudo">
-        <img src={`assets/${image}.svg`} alt='logo' onDoubleClick={() => {
-          setPostInfos((prevState) => {
-            prevState[index].liked = true;
-            prevState[index].imageClicked = prevState[index].imageClicked === 'noClicked' ? 'clicked' : 'noClicked';
-            return [...prevState];
-          });
-        }} data-test="post-image" />
-        <ion-icon name="heart" className={postInfos[index].imageClicked === 'clicked' ? 'heart-animation' : postInfos[index].imageClicked === 'noClicked' ? 'heart-animation2' : 'heart-hide'}></ion-icon>
-      </div>
+    const clickedCounterFormated = formater.format(likesCounter);
+    const counterFormated = formater.format(likesCounter + 1);
 
-      <div className="fundo">
-        <div className="acoes">
-          <div>
-            <ion-icon name={postInfos[index].liked === true ? 'heart' : 'heart-outline'} onClick={() => {
-              setPostInfos((prevState) => {
-                prevState[index].liked = !prevState[index].liked;
-                return [...prevState];
-              });
-            }} data-test="like-post" className="heart-menu"></ion-icon>
-            <ion-icon name="chatbubble-outline"></ion-icon>
-            <ion-icon name="paper-plane-outline"></ion-icon>
-          </div>
-          <div>
-            <ion-icon name={postInfos[index].saved === true ? 'bookmark' : 'bookmark-outline'} onClick={() => {
-              setPostInfos((prevState) => {
-                prevState[index].saved = !prevState[index].saved;
-                return [...prevState];
-              });
-            }} data-test="save-post"></ion-icon>
-          </div>
-        </div>
-
-        <div className="curtidas">
-          <img src={`assets/${likesUser}.svg`} alt='logo' />
-          <div className="texto">
-            Curtido por <strong>{likesUser}</strong> e <strong>outras <span data-test="likes-number">{postInfos[index].liked === true ? formater.format(likesCounter + 1) : formater.format(likesCounter)}</span> pessoas</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  ));
+    return (
+      <Post
+        key={index}
+        index={index}
+        author={author}
+        imageHeartHandle={imageHeartHandle}
+        image={image}
+        setPostInfos={setPostInfos}
+        postLiked={postLiked}
+        postSaved={postSaved}
+        likesUser={likesUser}
+        counterFormated={counterFormated}
+        clickedCounterFormated={clickedCounterFormated}
+      />
+    )
+  });
 
   return (
     <div>
