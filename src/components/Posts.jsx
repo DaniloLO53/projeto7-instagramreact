@@ -28,26 +28,34 @@ function Posts() {
     maximumSignificantDigits: 6,
   });
 
-  console.log(postInfos)
+  const post = postsInitialInfos.map(({
+    author,
+    image,
+    likesUser,
+    likesCounter
+  }, index) => {
+    let imageHeartHandle;
+    let imageIsClicked = postInfos[index].imageClicked;
+    const postLiked = !!postInfos[index].liked;
+    const postSaved = !!postInfos[index].saved;
 
-  const post = postsInitialInfos.map(({ author, image, likesUser, likesCounter }, index) => {
-    const imageClicked = postInfos[index].imageClicked;
-    const saved = postInfos[index].saved;
-    const liked = postInfos[index].liked;
-    const likesUserText = <strong>{likesUser}</strong>;
-    const likesCounterText = (
-      <strong>
-        <span data-test="likes-number">
-          {
-            liked ? formater.format(likesCounter + 1) : formater.format(likesCounter)
-          }
-        </span>
-      </strong>
-    );
-    const likesText = `Curtido por ${likesUserText} e outras ${likesCounterText}`;
+    if (imageIsClicked === 'clicked') {
+      imageHeartHandle = 'heart-animation';
+    } else if (imageIsClicked === 'noClicked') {
+      imageHeartHandle = 'heart-animation2';
+    } else {
+      imageHeartHandle = 'heart-hide';
+    };
+
+    const clickedCounterFormated = formater.format(likesCounter);
+    const counterFormated = formater.format(likesCounter + 1);
 
     return (
-      <div className="post" key={index} data-test="post">
+      <div
+        className="post"
+        key={index}
+        data-test="post"
+      >
         <div className="topo">
           <div className="usuario">
             <img src={`assets/${author}.svg`} alt='logo' />
@@ -62,23 +70,19 @@ function Posts() {
           <img
             src={`assets/${image}.svg`}
             alt='logo'
-            onDoubleClick={() => {
-              setPostInfos((prevState) => {
-                prevState[index].liked = true;
-                prevState[index].imageClicked = prevState[index].imageClicked === 'noClicked'
-                  ? 'clicked'
-                  : 'noClicked';
-                return [...prevState];
-              });
-            }} data-test="post-image" />
+            onDoubleClick={() => setPostInfos((prevState) => {
+              prevState[index].liked = true;
+              prevState[index].imageClicked = (
+                prevState[index].imageClicked === 'noClicked' ? 'clicked' : 'noClicked'
+              );
+
+              return [...prevState];
+            })}
+            data-test="post-image"
+          />
           <ion-icon
             name="heart"
-            className={
-              postInfos[index].imageClicked === 'clicked'
-                ? 'heart-animation'
-                : postInfos[index].imageClicked === 'noClicked'
-                  ? 'heart-animation2'
-                  : 'heart-hide'}
+            className={imageHeartHandle}
           />
         </div>
 
@@ -86,13 +90,12 @@ function Posts() {
           <div className="acoes">
             <div>
               <ion-icon
-                name={postInfos[index].liked === true ? 'heart' : 'heart-outline'}
-                onClick={() => {
-                  setPostInfos((prevState) => {
-                    prevState[index].liked = !prevState[index].liked;
-                    return [...prevState];
-                  });
-                }}
+                name={postLiked ? 'heart' : 'heart-outline'}
+                onClick={() => setPostInfos((prevState) => {
+                  prevState[index].liked = !prevState[index].liked;
+
+                  return [...prevState];
+                })}
                 data-test="like-post"
                 className="heart-menu"
               />
@@ -101,9 +104,10 @@ function Posts() {
             </div>
             <div>
               <ion-icon
-                name={saved ? 'bookmark' : 'bookmark-outline'}
+                name={postSaved ? 'bookmark' : 'bookmark-outline'}
                 onClick={() => setPostInfos((prevState) => {
                   prevState[index].saved = !prevState[index].saved;
+
                   return [...prevState];
                 })}
                 data-test="save-post"
@@ -114,7 +118,10 @@ function Posts() {
           <div className="curtidas">
             <img src={`assets/${likesUser}.svg`} alt='logo' />
             <div className="texto">
-              {likesText}
+              Curtido por <strong> {likesUser} </strong> e outras <strong>
+                <span data-test="likes-number">
+                  {postLiked ? counterFormated : clickedCounterFormated}
+                </span> pessoas </strong>
             </div>
           </div>
         </div>
