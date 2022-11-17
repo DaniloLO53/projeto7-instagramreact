@@ -228,9 +228,10 @@ body {
   top: 88px;
 }
 
-.sidebar > .usuario {
+div.usuario-name {
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 
 .sidebar > .usuario img {
@@ -239,8 +240,7 @@ body {
   border-radius: 50%;
 }
 
-.sidebar > .usuario .texto {
-  background-color: red;
+div.texto-nome {
   display: flex;
   flex-direction: column;
   margin-left: 14px;
