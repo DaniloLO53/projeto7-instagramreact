@@ -24,7 +24,7 @@ function Usuario() {
 
   return (
     <div>
-      <div className="usuario-name" data-test="user" data-testid="user">
+      <div className="usuario-name" data-test="user">
         <button type="button" onClick={() => changeUserImage()}>
           <img
             src={userImage}
