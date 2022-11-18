@@ -41,10 +41,10 @@ function Posts() {
     author,
     image,
     likesUser,
-    likesCounter
+    likesCounter,
   }, index) => {
     let imageHeartHandle;
-    let imageIsClicked = postInfos[index].imageClicked;
+    const imageIsClicked = postInfos[index].imageClicked;
     const postLiked = !!postInfos[index].liked;
     const postSaved = !!postInfos[index].saved;
 
@@ -54,14 +54,14 @@ function Posts() {
       imageHeartHandle = 'heart-animation2';
     } else {
       imageHeartHandle = 'heart-hide';
-    };
+    }
 
     const clickedCounterFormated = formater.format(likesCounter);
     const counterFormated = formater.format(likesCounter + 1);
 
     return (
       <Post
-        key={index}
+        key={author}
         index={index}
         author={author}
         imageHeartHandle={imageHeartHandle}
@@ -73,7 +73,7 @@ function Posts() {
         counterFormated={counterFormated}
         clickedCounterFormated={clickedCounterFormated}
       />
-    )
+    );
   });
 
   return (
@@ -83,6 +83,6 @@ function Posts() {
       </div>
     </div>
   );
-};
+}
 
 export default Posts;

@@ -13,18 +13,18 @@ function Stories() {
     'memeriagourmet',
   ];
 
-  const story = usersName.map((name, index) => <Story name={name} key={index} />);
+  const story = usersName.map((name) => <Story name={name} key={name} />);
 
   return (
     <div>
       <div className="stories">
         {story}
         <div className="setinha">
-          <ion-icon name="chevron-forward-circle"></ion-icon>
+          <ion-icon name="chevron-forward-circle" />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Stories;
