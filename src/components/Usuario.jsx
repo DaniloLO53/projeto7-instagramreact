@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function Usuario() {
   const [userName, setUserName] = useState('Catana');
-  const [userImage, setUserImage] = useState(`assets/catanacomics.svg`);
+  const [userImage, setUserImage] = useState('assets/catanacomics.svg');
 
   const changeUserName = () => {
     let name = prompt('Insira um nome: ');
@@ -11,7 +11,7 @@ function Usuario() {
     } else {
       name = prompt('Insira um nome: ');
     }
-  }
+  };
 
   const changeUserImage = () => {
     let image = prompt('Insira um nome para a imagem: ');
@@ -20,19 +20,18 @@ function Usuario() {
     } else {
       image = prompt('Insira um nome para a imagem: ');
     }
-  }
-
-  console.log(userImage)
+  };
 
   return (
     <div>
       <div className="usuario-name" data-test="user">
-        <img
-          src={userImage}
-          alt='profile-icon'
-          onClick={() => changeUserImage()}
-          data-test="profile-image"
-        />
+        <button type="button" onClick={() => changeUserImage()}>
+          <img
+            src={userImage}
+            alt="profile-icon"
+            data-test="profile-image"
+          />
+        </button>
         <div className="texto-nome">
           <strong>catanacomics</strong>
           <span data-test="name">
@@ -47,6 +46,6 @@ function Usuario() {
       </div>
     </div>
   );
-};
+}
 
 export default Usuario;

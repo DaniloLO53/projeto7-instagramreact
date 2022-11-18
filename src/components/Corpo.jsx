@@ -15,6 +15,6 @@ function Corpo() {
       </div>
     </div>
   );
-};
+}
 
 export default Corpo;

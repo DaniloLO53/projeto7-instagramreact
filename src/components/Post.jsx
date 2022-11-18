@@ -1,4 +1,6 @@
-import React from "react";
+/* eslint-disable no-param-reassign */
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Post(props) {
   const {
@@ -11,14 +13,14 @@ function Post(props) {
     postSaved,
     likesUser,
     counterFormated,
-    clickedCounterFormated
+    clickedCounterFormated,
   } = props;
 
   return (
-    <div className="post" data-test="post" >
+    <div className="post" data-test="post">
       <div className="topo">
         <div className="usuario">
-          <img src={`assets/${author}.svg`} alt='logo' />
+          <img src={`assets/${author}.svg`} alt="logo" />
           meowed
         </div>
         <div className="acoes">
@@ -29,7 +31,7 @@ function Post(props) {
       <div className="conteudo">
         <img
           src={`assets/${image}.svg`}
-          alt='logo'
+          alt="logo"
           onDoubleClick={() => setPostInfos((prevState) => {
             prevState[index].liked = true;
             prevState[index].imageClicked = (
@@ -76,17 +78,44 @@ function Post(props) {
         </div>
 
         <div className="curtidas">
-          <img src={`assets/${likesUser}.svg`} alt='logo' />
+          <img src={`assets/${likesUser}.svg`} alt="logo" />
           <div className="texto">
-            Curtido por <strong> {likesUser} </strong> e outras <strong>
+            Curtido por
+            {' '}
+            <strong>
+              {' '}
+              {likesUser}
+              {' '}
+            </strong>
+            {' '}
+            e outras
+            {' '}
+            <strong>
               <span data-test="likes-number">
                 {postLiked ? counterFormated : clickedCounterFormated}
-              </span> pessoas </strong>
+              </span>
+              {' '}
+              pessoas
+              {' '}
+            </strong>
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+Post.propTypes = {
+  index: PropTypes.number.isRequired,
+  author: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  imageHeartHandle: PropTypes.string.isRequired,
+  setPostInfos: PropTypes.func.isRequired,
+  postLiked: PropTypes.bool.isRequired,
+  postSaved: PropTypes.bool.isRequired,
+  likesUser: PropTypes.string.isRequired,
+  counterFormated: PropTypes.string.isRequired,
+  clickedCounterFormated: PropTypes.string.isRequired,
 };
 
 export default Post;

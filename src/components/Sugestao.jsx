@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Sugestao(props) {
   const { index, name, status } = props;
@@ -6,7 +7,7 @@ function Sugestao(props) {
   return (
     <div className="sugestao" key={index}>
       <div className="usuario">
-        <img src={`assets/${name}.svg`} alt='profile-icon' />
+        <img src={`assets/${name}.svg`} alt="profile-icon" />
         <div className="texto">
           <div className="nome">{name}</div>
           <div className="razao">{status}</div>
@@ -16,6 +17,12 @@ function Sugestao(props) {
       <div className="seguir">Seguir</div>
     </div>
   );
+}
+
+Sugestao.propTypes = {
+  index: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
 };
 
 export default Sugestao;

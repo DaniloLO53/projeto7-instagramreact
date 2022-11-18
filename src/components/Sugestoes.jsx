@@ -30,7 +30,7 @@ function Sugestoes() {
       name={name}
       status={status}
       index={index}
-      key={index}
+      key={name}
     />
   ));
 
@@ -45,6 +45,6 @@ function Sugestoes() {
       </div>
     </div>
   );
-};
+}
 
 export default Sugestoes;
