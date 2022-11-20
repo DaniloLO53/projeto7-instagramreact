@@ -1,20 +1,31 @@
 /* eslint-disable no-param-reassign */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function Post(props) {
   const {
-    index,
     author,
-    imageHeartHandle,
     image,
-    setPostInfos,
-    postLiked,
-    postSaved,
     likesUser,
-    counterFormated,
-    clickedCounterFormated,
+    likesCounter,
   } = props;
+
+  let imageHeartHandle;
+  const [postLiked, setPostLiked] = useState(false);
+  const [postSaved, setPostSaved] = useState(false);
+  const [imageClicked, setImageClicked] = useState(false);
+
+  if (imageClicked) {
+    imageHeartHandle = 'heart-animation';
+  } else {
+    imageHeartHandle = 'heart-animation2';
+  }
+
+  const formater = new Intl.NumberFormat('pt-BR', {
+    maximumSignificantDigits: 6,
+  });
+  const clickedCounterFormated = formater.format(likesCounter);
+  const counterFormated = formater.format(likesCounter + 1);
 
   return (
     <div className="post" data-test="post">
@@ -32,14 +43,10 @@ function Post(props) {
         <img
           src={`assets/${image}.svg`}
           alt="logo"
-          onDoubleClick={() => setPostInfos((prevState) => {
-            prevState[index].liked = true;
-            prevState[index].imageClicked = (
-              prevState[index].imageClicked === 'noClicked' ? 'clicked' : 'noClicked'
-            );
-
-            return [...prevState];
-          })}
+          onDoubleClick={() => {
+            setPostLiked(true);
+            setImageClicked((prevState) => !prevState)
+          }}
           data-test="post-image"
         />
         <ion-icon
@@ -53,11 +60,7 @@ function Post(props) {
           <div>
             <ion-icon
               name={postLiked ? 'heart' : 'heart-outline'}
-              onClick={() => setPostInfos((prevState) => {
-                prevState[index].liked = !prevState[index].liked;
-
-                return [...prevState];
-              })}
+              onClick={() => setPostLiked((prevState) => !prevState)}
               data-test="like-post"
               className="heart-menu"
             />
@@ -67,11 +70,7 @@ function Post(props) {
           <div>
             <ion-icon
               name={postSaved ? 'bookmark' : 'bookmark-outline'}
-              onClick={() => setPostInfos((prevState) => {
-                prevState[index].saved = !prevState[index].saved;
-
-                return [...prevState];
-              })}
+              onClick={() => setPostSaved((prevState) => !prevState)}
               data-test="save-post"
             />
           </div>
@@ -106,16 +105,9 @@ function Post(props) {
 }
 
 Post.propTypes = {
-  index: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  imageHeartHandle: PropTypes.string.isRequired,
-  setPostInfos: PropTypes.func.isRequired,
-  postLiked: PropTypes.bool.isRequired,
-  postSaved: PropTypes.bool.isRequired,
   likesUser: PropTypes.string.isRequired,
-  counterFormated: PropTypes.string.isRequired,
-  clickedCounterFormated: PropTypes.string.isRequired,
 };
 
 export default Post;
