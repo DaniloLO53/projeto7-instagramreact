@@ -10,16 +10,21 @@ function Post(props) {
     likesCounter,
   } = props;
 
-  let imageHeartHandle;
   const [postLiked, setPostLiked] = useState(false);
   const [postSaved, setPostSaved] = useState(false);
   const [imageClicked, setImageClicked] = useState(false);
+  const [imageHeartHandle, setImageHeartHandle] = useState('heart-hide');
 
-  if (imageClicked) {
-    imageHeartHandle = 'heart-animation';
-  } else {
-    imageHeartHandle = 'heart-animation2';
-  }
+  const doubleClickHandle = () => {
+    setPostLiked(true);
+    setImageClicked((prevState) => !prevState);
+
+    if (imageClicked) {
+      setImageHeartHandle('heart-animation');
+    } else {
+      setImageHeartHandle('heart-animation2');
+    }
+  };
 
   const formater = new Intl.NumberFormat('pt-BR', {
     maximumSignificantDigits: 6,
@@ -43,10 +48,7 @@ function Post(props) {
         <img
           src={`assets/${image}.svg`}
           alt="logo"
-          onDoubleClick={() => {
-            setPostLiked(true);
-            setImageClicked((prevState) => !prevState)
-          }}
+          onDoubleClick={() => doubleClickHandle()}
           data-test="post-image"
         />
         <ion-icon
