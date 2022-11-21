@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-function CommentInput() {
+function CommentInput(props) {
   const [comment, setComment] = useState('');
   const [commentDisabled, setCommentDisabled] = useState(true);
-  console.log(comment, commentDisabled);
+  const { userName, insertComment, index } = props;
+
+  const clickHandle = () => {
+    const info = {
+      author: userName,
+      text: comment,
+    };
+
+    insertComment(index, info);
+  };
 
   useEffect(() => setCommentDisabled(comment.length === 0), [comment]);
 
@@ -18,6 +27,7 @@ function CommentInput() {
         <button
           type="button"
           disabled={commentDisabled}
+          onClick={() => clickHandle()}
         >
           Post
         </button>

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Post from './Post';
 
-function Posts() {
+function Posts(props) {
   const postsInitialInfos = [
     {
       author: 'meowed',
@@ -65,13 +65,24 @@ function Posts() {
     },
   ];
 
-  const post = postsInitialInfos.map(({
+  const [infos, setInfos] = useState(postsInitialInfos);
+
+  const insertComment = (index, commentObject) => {
+    setInfos((prevState) => {
+      prevState[index].comments.push(commentObject);
+      return [...prevState];
+    });
+  }
+
+  const { userName, setUserName } = props;
+
+  const post = infos.map(({
     author,
     image,
     likesUser,
     likesCounter,
     comments,
-  }) => {
+  }, index) => {
 
     return (
       <Post
@@ -81,6 +92,10 @@ function Posts() {
         likesUser={likesUser}
         likesCounter={likesCounter}
         comments={comments}
+        userName={userName}
+        setUserName={setUserName}
+        index={index}
+        insertComment={insertComment}
       />
     );
   });

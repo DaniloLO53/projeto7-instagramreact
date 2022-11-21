@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-function Usuario() {
-  const [userName, setUserName] = useState('Catana');
+function Usuario(props) {
+  const { userName, setUserName } = props;
   const [userImage, setUserImage] = useState('assets/catanacomics.svg');
 
   const changeUserName = () => {

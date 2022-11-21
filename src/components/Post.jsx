@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Comments from './Comments';
-import CommentInput from '../CommentInput';
+import CommentInput from './CommentInput';
 
 function Post(props) {
   const {
@@ -11,6 +11,10 @@ function Post(props) {
     likesUser,
     likesCounter,
     comments,
+    userName,
+    setUserName,
+    insertComment,
+    index,
   } = props;
 
   const [postLiked, setPostLiked] = useState(false);
@@ -105,8 +109,8 @@ function Post(props) {
           </div>
         </div>
       </div>
-      <Comments comments={comments} />
-      <CommentInput />
+      <Comments comments={comments} insertComment={insertComment} index={index} />
+      <CommentInput comments={comments} userName={userName} setUserName={setUserName} insertComment={insertComment} index={index} />
     </div>
   );
 }
