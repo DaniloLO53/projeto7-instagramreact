@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Comments from './Comments';
+import CommentInput from '../CommentInput';
 
 function Post(props) {
   const {
@@ -105,6 +106,7 @@ function Post(props) {
         </div>
       </div>
       <Comments comments={comments} />
+      <CommentInput />
     </div>
   );
 }

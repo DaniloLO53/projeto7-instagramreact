@@ -388,6 +388,51 @@ ion-icon[name=heart][classname=heart-menu] {
   max-width: 70%;
 }
 
+.commentInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #DBDBDB;
+  padding: 7px 0 7px 0;
+}
+
+.commentInput input {
+  background-color: #FAFAFA;
+  width: 90%;
+  min-height: 40px;
+  border: none;
+  padding-left: 10px;
+}
+
+.commentInput input::placeholder {
+  padding-left: 10px;
+}
+
+.commentInput button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  margin-right: 10px;
+  font-weight: 600;
+  color: #139EF2;
+}
+
+.commentInput button:disabled {
+  opacity: 0.4;
+}
+
+.commentInput button:hover {
+  cursor: pointer;
+}
+
+.commentInput button:disabled:hover {
+  cursor: initial;
+}
+
+.commentInput button:disabled:active {
+  color: red;
+}
+
 @keyframes heart-animation {
   0% {
     font-size: 30px;
