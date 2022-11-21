@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Comments from './Comments';
 
 function Post(props) {
   const {
@@ -8,6 +9,7 @@ function Post(props) {
     image,
     likesUser,
     likesCounter,
+    comments,
   } = props;
 
   const [postLiked, setPostLiked] = useState(false);
@@ -102,6 +104,7 @@ function Post(props) {
           </div>
         </div>
       </div>
+      <Comments comments={comments} />
     </div>
   );
 }

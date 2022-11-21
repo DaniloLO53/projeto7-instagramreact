@@ -363,6 +363,31 @@ ion-icon[name=heart][classname=heart-menu] {
   color: red;
 }
 
+.comment {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment strong {
+  margin-right: 10px;
+}
+
+.comment button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+
+.comment ion-icon[name=heart] {
+  color: red;
+}
+
+.comment div:first-of-type {
+  max-width: 70%;
+}
+
 @keyframes heart-animation {
   0% {
     font-size: 30px;
